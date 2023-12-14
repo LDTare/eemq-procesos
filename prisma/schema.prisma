@@ -9,3 +9,52 @@ datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
 }
+
+model tbl_clientes {
+  id       Int     @id @default(autoincrement())
+  DPI      Float   @unique
+  Nombre   String  @db.Char(200)
+  Apellido String  @db.Char(200)
+  Correo   String  @unique @db.VarChar(200)
+  Telefono Float
+  NIM      Float   @unique
+  NIT      Float   @unique
+  Estado   Boolean @default(true)
+}
+
+model tbl_permisos {
+  id         Int     @id @default(autoincrement())
+  Nombre     String  @unique @db.Char(200)
+  Componente String  @db.Char(200)
+  Estado     Boolean @default(true)
+}
+
+model tbl_departamentos {
+  id          Int     @id @default(autoincrement())
+  Nombre      String  @unique @db.Char(200)
+  Descripcion String  @db.Char(200)
+  Estado      Boolean @default(true)
+}
+
+model tbl_actividad {
+  id          Int     @id @default(autoincrement())
+  Nombre      String  @db.Char(200)
+  Descripcion String  @db.Char(200)
+  Imagen      String  @db.Char(200)
+  Estado      Boolean @default(true)
+}
+
+model tbl_tipotramite {
+  id              Int      @id @default(autoincrement())
+  Nombre          String   @unique @db.Char(200)
+  Descripcion     String   @db.Char(200)
+  Tiempo_estimado DateTime @db.DateTime
+  Estado          Boolean  @default(true)
+}
+
+model tbl_requisitos {
+  id              Int      @id @default(autoincrement())
+  Nombre          String   @unique @db.Char(200)
+  Descripcion     String   @db.Char(200)
+  Estado          Boolean  @default(true)
+}
