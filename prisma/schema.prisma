@@ -9,3 +9,41 @@ datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
 }
+
+model tbl_usuarios {
+  id Int @id @default(autoincrement())
+  nombre String
+  apellido String
+  username String
+  password String
+  email String   @unique
+  image String?
+  telefono Int
+  puesto_id Int
+  estado Boolean @default(true)
+
+  //relaciones
+  puestos tbl_puestos @relation(fields:[puesto_id], references:[id])
+}
+
+model tbl_puestos {
+  id        Int    @id @default(autoincrement())
+  nombre String
+  descripcion String
+  depa_id Int
+  estado Boolean @default(true)
+
+  //relaciones
+  departamentos tbl_departamentos @relation(fields: [depa_id], references: [id])
+  relacion_usuarios tbl_usuarios[]
+}
+
+model tbl_departamentos {
+  id          Int     @id @default(autoincrement())
+  nombre      String
+  descripcion String? @default("EEMQ Departamento")
+  estado Boolean @default(true)
+
+  //relaciones
+  relacion_puestos tbl_puestos[]
+}
