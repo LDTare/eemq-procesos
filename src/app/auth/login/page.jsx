@@ -36,7 +36,7 @@ function LoginPage() {
           <img
             className="mx-auto h-auto w-auto"
             src="https://eemq.org/wp-content/uploads/2020/04/image-3.png"
-            alt="Your Company"
+            alt="EEMQ Logo"
           />
         </div>
       </div>
@@ -60,7 +60,7 @@ function LoginPage() {
               htmlFor="email"
               className="font-semibold text-sm text-gray-600 pb-1 block"
             >
-              Correo electronico
+              Correo electrónico
             </label>
             <div className="mt-2">
               <input
@@ -86,12 +86,14 @@ function LoginPage() {
                 Contraseña
               </label>
               <div className="text-sm">
-                <a
+                password recovery
+                {/* <a
                   href="#"
                   className="font-semibold text-gray-600 hover:text-gray-800"
                 >
                   ¿Olvido su contraseña?
                 </a>
+                */}
               </div>
             </div>
             <div className="mt-2">

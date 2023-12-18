@@ -15,7 +15,7 @@ import {
 } from "@/components/ui/navigation-menu";
 
 const dropUsuarios = [
-  { name: "Inicio", link: "/usuarios/dashboard" },
+  { name: "Inicio", link: "/modulos/usuarios/dashboard" },
   { name: "Permisos", link: "/permiso/dashboard" },
   { name: "Roles", link: "/roles/dashboard" },
 ];
