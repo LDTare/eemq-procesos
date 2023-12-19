@@ -105,13 +105,13 @@ export function DataTable({ columns, data }) {
                   colSpan={columns.length}
                   className="h-24 text-center"
                 >
-                  No results.
+                  No se encuentran resultados.
                 </TableCell>
               </TableRow>
             )}
           </TableBody>
         </Table>
-        <div className="flex items-center justify-end space-x-2 py-4">
+        <div className="flex items-center justify-end space-x-2 py-4 px-2 border-y">
           <Button
             variant="outline"
             size="sm"

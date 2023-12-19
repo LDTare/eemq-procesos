@@ -38,7 +38,7 @@ const Navbar = () => {
   const { data: session, status } = useSession();
   return (
     <nav className="bg-blue-950 py-5 ">
-      <div className="container mx-auto flex justify-between items-center">
+      <div className="container mx-auto flex justify-between items-center text-white text-md font-semibold">
         <h3 className="font-bold text-xl">EEMQ Trámites</h3>
 
         <NavigationMenu>

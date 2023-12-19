@@ -3,28 +3,42 @@ import { useRouter } from "next/navigation";
 
 export const columns = [
   {
-    accessorKey: "estado",
-    header: "estado",
-  },
-  {
-    accessorKey: "puesto_id",
-    header: "puesto",
-  },
-  {
-    accessorKey: "telefono",
-    header: "telefono",
-  },
-  {
-    accessorKey: "email",
-    header: "email",
+    accessorKey: "nombre",
+    header: "Nombre",
   },
   {
     accessorKey: "apellido",
-    header: "apellido",
+    header: "Apellido",
   },
   {
-    accessorKey: "nombre",
-    header: "nombre",
+    accessorKey: "puesto_id",
+    header: "Puesto",
+    enableHiding: false,
+    cell: ({row}) => {
+      const rol = row.original;
+      return(
+        <p>{rol.puestos.nombre}</p>
+      )
+    }
+  },
+  {
+    accessorKey: "telefono",
+    header: "Telefono",
+  },
+  {
+    accessorKey: "email",
+    header: "E-mail",
+  },
+  {
+    accessorKey: "estado",
+    header: "Estado",
+    enableHiding: false,
+    cell:({ row }) => {
+      const estado = row.original;
+      return (
+        <p className={estado.estado = false? "text-red-500 font-semibold" : "text-green-500 font-semibold"}> { estado.estado = false? "Inactivo": "Registrado"} </p>
+      )
+    }
   },
   {
     id: "acciones",
@@ -34,7 +48,7 @@ export const columns = [
       const router = useRouter();
       return (
         <button
-          className=" rounded hover:bg-gray-700 bg-gray-500 py-1 px-2"
+          className=" rounded hover:bg-gray-700 bg-gray-500 py-1 px-2 text-slate-200"
           onClick={() => {
             router.push("/modulos/usuarios/edit/" + usuario.id);
           }}
