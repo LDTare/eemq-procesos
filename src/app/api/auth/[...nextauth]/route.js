@@ -2,11 +2,10 @@ import NextAuth from "next-auth/next";
 import Credentials from "next-auth/providers/credentials"
 import bcrypt from "bcrypt"
 import {PrismaAdapter} from "@auth/prisma-adapter"
-import db from "@/lib/prisma";
+import {db} from "@/lib/prisma";
 
-let prisma = db();
 export const authOptions = {
-    adapter: PrismaAdapter(prisma),
+    adapter: PrismaAdapter(db),
     providers: [
         Credentials({
             name: 'Credentials',
@@ -24,7 +23,7 @@ export const authOptions = {
                 }
     
                 //verificar si el usuario existe
-                const user = await prisma.tbl_usuarios.findUnique({
+                const user = await db.tbl_usuarios.findUnique({
                     where:{
                         email: credentials.email
                     }

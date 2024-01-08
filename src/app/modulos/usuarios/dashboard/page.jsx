@@ -1,12 +1,10 @@
-import db from "@/lib/prisma";
+import { db } from "@/lib/prisma";
 import Link from "next/link";
 import { columns } from "@/app/objects/globals/usuarios/columns";
 import { DataTable } from "@/app/objects/globals/usuarios/data-table";
 
-let data = db();
-
 async function cargarUsuarios() {
-  return await data.tbl_usuarios.findMany({
+  return await db.tbl_usuarios.findMany({
     include: {
       puestos: true,
     },
@@ -21,9 +19,7 @@ async function usuariosDashboard() {
   return (
     <section className="container mx-auto py-5">
       <div className="p-5 bg-blue-950 text-white">
-        <h1 className="text-center text-3xl font-bold">
-          Usuarios registrados
-        </h1>
+        <h1 className="text-center text-3xl font-bold">Usuarios registrados</h1>
         <button className="rounded bg-green-500 px-4 py-2">
           <Link href="/modulos/usuarios/new" passHref>
             Registrar un nuevo usuario

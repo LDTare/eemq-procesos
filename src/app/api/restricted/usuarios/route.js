@@ -1,13 +1,11 @@
 import { NextResponse } from "next/server";
-import db from "@/lib/prisma";
+import { db } from "@/lib/prisma";
 import bcrypt from "bcrypt";
-
-let data_db = db();
 
 //Funcion para obtener el listado de todos los usuarios registrados
 export async function GET() {
   try {
-    const usuarios = await data_db.tbl_usuarios.findMany();
+    const usuarios = await db.tbl_usuarios.findMany();
     return NextResponse.json(usuarios);
   } catch (error) {
     return NextResponse.json({ message: error.message }, { status: 500 });
@@ -21,7 +19,7 @@ export async function POST(request) {
   //Validación de los datos contenidos en la solicitud de creación
   try {
     //Verificación de email
-    const findEmail = await data_db.tbl_usuarios.findUnique({
+    const findEmail = await db.tbl_usuarios.findUnique({
       where: {
         email: data.email,
       },
@@ -37,7 +35,7 @@ export async function POST(request) {
     }
 
     //Verificacion par ael nombre de usuario
-    const findUsername = await data_db.tbl_usuarios.findFirst({
+    const findUsername = await db.tbl_usuarios.findFirst({
       where: {
         username: data.username,
       },
@@ -56,7 +54,7 @@ export async function POST(request) {
     const hashPassword = await bcrypt.hash(data.password, 10);
 
     //Creación de nuevo usuario
-    const newUser = await data_db.tbl_usuarios.create({
+    const newUser = await db.tbl_usuarios.create({
       data: {
         nombre: data.nombre,
         apellido: data.apellido,

@@ -21,7 +21,7 @@ const dropUsuarios = [
 ];
 
 const dropDepartamentos = [
-  { name: "Inicio", link: "/departamento/dashboard" },
+  { name: "Inicio", link: "/modulos/departamentos/dashboard" },
   { name: "Puestos", link: "/areas/dashboard" },
 ];
 

@@ -1,13 +1,11 @@
 import { NextResponse } from "next/server";
-import db from "@/lib/prisma";
+import { db } from "@/lib/prisma";
 import bcrypt from "bcrypt";
-
-let data_db = db();
 
 //Función para obtener la información de un solo usuario
 export async function GET(request, { params }) {
   try {
-    const usuario = await data_db.tbl_usuarios.findUnique({
+    const usuario = await db.tbl_usuarios.findUnique({
       where: {
         id: Number(params.id),
       },
@@ -21,19 +19,19 @@ export async function GET(request, { params }) {
 //Función para eliminar un usuario
 export async function DELETE(request, { params }) {
   try {
-    const borrarUsuario = data_db.tbl_usuarios.delete({
+    const borrarUsuario = db.tbl_usuarios.delete({
       where: {
         id: Number(params.id),
       },
     });
     if (!borrarUsuario)
       return NextResponse.json(
-        { message: "Error inesparado al eliminar el registro" },
+        { message: "No se ha podido eliminar al usuario" },
         { status: 400 }
       );
     //Retornamos una respuesta con el mensaje y código HTTP correspondiente a la operación realizada
     return NextResponse.json(
-      { message: "Registro Eliminado Correctamente" },
+      { message: "Registro eliminado Correctamente" },
       { status: 200 }
     );
   } catch (error) {
@@ -48,7 +46,7 @@ export async function PUT(request, { params }) {
   try {
     const hashPassword = await bcrypt.hash(data.password, 10);
 
-    const actualizarUsuario = await data_db.tbl_usuarios.update({
+    const actualizarUsuario = await db.tbl_usuarios.update({
       where: {
         id: Number(params.id),
       },
